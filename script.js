@@ -4,7 +4,8 @@ let todoList = JSON.parse(localStorage.getItem('myTodos')) || [
     { id: 2, date: "2026-01-06", text: "明晚要去買電視", completed: true }
     // 留點假資料讓初使畫面有內容
 ];
-
+let filteredList = [...todoList]; // 用來存放過濾後的結果
+let currentFilter = 'all'; // 當前的狀態篩選：'all', 'completed', 'uncompleted'
 
 function saveToLocal() {
     localStorage.setItem('myTodos', JSON.stringify(todoList));
@@ -14,7 +15,7 @@ function render() {
     const container = document.getElementById('todo-container');
     if (!container) return;
 
-    container.innerHTML = todoList.map(item => `
+    container.innerHTML = filteredList.map(item => `
         <li class="content-box ${item.completed ? 'completed' : ''}" data-id="${item.id}">
             <!--  <input type="checkbox" onchange="toggleTodo(${item.id})" ${item.completed ? 'checked' : ''}> -->
             <!--暫時取消勾選框，之後要全選之類的再開 -->
@@ -58,19 +59,19 @@ window.addTodo = () => {
 
     todoList.push(newTodo);
     input.value = ""; // 清空輸入框
-    render();
+    applyFilter();
 };
 
 window.toggleTodo = (id) => {
     const item = todoList.find(t => t.id === id);
     if (item) item.completed = !item.completed;
-    render();
+    applyFilter();
 };
 
 window.changeTodo = (id) => {
     const item = todoList.find(t => t.id === id);
     if (item) item.completed = !item.completed;
-    render();
+    applyFilter();
 };
 
 window.deleteTodo = (id) => {
@@ -94,6 +95,37 @@ window.delAll = () => {
         location.reload();
     }
 };
+// 套用狀態篩選
+function applyFilter() {
+    if (currentFilter === 'all') {
+        filteredList = [...todoList];
+    } else if (currentFilter === 'completed') {
+        filteredList = todoList.filter(item => item.completed === true);
+    } else if (currentFilter === 'uncompleted') {
+        filteredList = todoList.filter(item => item.completed === false);
+    }
+    
+    render();
+}
+
+// 按狀態篩選
+window.filterByStatus = (status) => {
+    currentFilter = status;
+    
+    // 更新按鈕的 active 狀態
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    if (status === 'all') {
+        buttons[0].classList.add('active');
+    } else if (status === 'completed') {
+        buttons[1].classList.add('active');
+    } else if (status === 'uncompleted') {
+        buttons[2].classList.add('active');
+    }
+    
+    applyFilter();
+};
 
 // 初始化執行
-render();
+applyFilter();

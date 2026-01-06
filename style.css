@@ -47,10 +47,10 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    border: 2px solid red;
+    border: 2px solid rgb(250, 178, 111);
     gap: 12px;
     padding: 12px;
-    max-width: 768px;
+    max-width: 576px;
     min-width: 374px;
     width: 100%;
     margin: 12px auto;
@@ -124,7 +124,12 @@ body {
     width: 20%;
 }
 
-@media (max-width: 576px) {
+.filter-buttons{
+    display: flex;
+    gap: 8px;
+}
+
+@media (max-width: 450px) {
 
     .section-box,
     .list-box {
@@ -136,6 +141,7 @@ body {
         align-items: flex-start;
         gap: 8px;
         border-bottom: 1px solid #333;
+        padding-left: 0;
 
         &:hover {
             background-color: initial;
