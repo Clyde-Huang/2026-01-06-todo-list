@@ -6,7 +6,6 @@
 
 body {
     font-size: 16px;
-    line-height: 1.2;
 }
 
 .btn {
@@ -114,6 +113,7 @@ body {
     width: 100%;
     gap: 8px;
     padding: 8px;
+    line-height: 1.2;
 
     &:hover {
         background-color: rgb(255, 255, 68);
@@ -125,7 +125,7 @@ body {
     width: 20%;
 }
 
-.filter-buttons{
+.filter-buttons {
     display: flex;
     gap: 8px;
 }
