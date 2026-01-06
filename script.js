@@ -19,24 +19,22 @@ function render() {
             <!--  <input type="checkbox" onchange="toggleTodo(${item.id})" ${item.completed ? 'checked' : ''}> -->
             <!--暫時取消勾選框，之後要全選之類的再開 -->
             <div class="left-side">
-            <span>${item.date}</span>
-            <span style="text-decoration: ${item.completed ? 'line-through' : 'none'}">${item.text}</span>
+                <span>${item.date}</span>
+                <span style="text-decoration: ${item.completed ? 'line-through' : 'none'}">${item.text}</span>
             </div>
 
             <div class="right-side">
-            <button class="btn" onclick="changeTodo(${item.id})">
+                <button class="btn" onclick="changeTodo(${item.id})">
                 標記為${item.completed ? '未完成' : '已完成'}
-            </button>
-            <span >狀態: ${item.completed ? '✅' : '❌'}</span>
-            <button class="btn" onclick="deleteTodo(${item.id})">刪除</button>
+                </button>
+                <span >狀態: ${item.completed ? '✅' : '❌'}</span>
+                <button class="btn" onclick="deleteTodo(${item.id})">刪除</button>
             </div>
         </li>
     `).join('');
 
     saveToLocal();
 }
-
-
 
 // 增
 window.addTodo = () => {
@@ -51,8 +49,6 @@ window.addTodo = () => {
     // 取得當下時間
     const now = new Date();
     const dateString = now.toLocaleDateString('en-CA'); // 格式化為 YYYY-MM-DD
-
-
     const newTodo = {
         id: Date.now(), // 唯一 ID
         date: dateString,
@@ -81,6 +77,21 @@ window.deleteTodo = (id) => {
     if (confirm("確定要刪除嗎？")) {
         todoList = todoList.filter(t => t.id !== id);
         render();
+    }
+};
+
+// 1.全刪包含初始假資料
+// window.delAll = () => {
+//     if (confirm("確定要清空全部待辦事項嗎？")) {
+//         todoList = []; // 1. 把記憶體裡的陣列清空
+//         render();      // 2. 重新渲染 (這會自動執行 saveToLocal 覆蓋掉 localStorage)
+//     }
+// };
+// 2.全刪但留下初始假資料
+window.delAll = () => {
+    if (confirm("確定要清空全部待辦事項嗎？")) {
+        localStorage.removeItem('myTodos');
+        location.reload();
     }
 };
 

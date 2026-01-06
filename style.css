@@ -10,18 +10,36 @@ body {
 
 .btn {
     cursor: pointer;
+    /* padding: 6px 12px; */
+    background: linear-gradient(180deg, #ffffff 0%, #dfdfdf 100%);
+    border-top: 2px solid #a3a3a3;
+    border-left: 2px solid #a3a3a3;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #333;
+    /* font-size: 14px; */
+    font-weight: 500;
+    transition: all 0.1s;
+    font-family: inherit;
+
+}
+
+.btn:hover {
+    background: linear-gradient(180deg, #f0f0f0 0%, #d0d0d0 100%);
+}
+
+.btn:active {
+    transform: translateY(1px);
 }
 
 .input-content {
     width: 300px;
     height: 24px;
-    border-top: 3px solid #333;
-    border-left: 3px solid #333;
-    border-right: 3px solid #a3a3a3;
-    border-bottom: 3px solid #a3a3a3;
+    border-top: 3px solid #a3a3a3;
+    border-left: 3px solid #a3a3a3;
+    border-right: 3px solid #333;
+    border-bottom: 3px solid #333;
     border-radius: 2px;
     padding: 2px;
-
 }
 
 .section-box {
@@ -32,7 +50,7 @@ body {
     border: 2px solid red;
     gap: 12px;
     padding: 12px;
-    max-width: 1024px;
+    max-width: 768px;
     min-width: 374px;
     width: 100%;
     margin: 12px auto;
@@ -56,12 +74,12 @@ body {
 
 .right-side {
     margin-left: auto;
-    /* 核心：把右邊這整塊推到最右邊 */
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    /* 右邊這塊內部靠右對齊 */
     gap: 4px;
+    flex-shrink: 0;
+    /* 防止右側被壓縮 */
 }
 
 .left-side {
@@ -70,7 +88,22 @@ body {
     align-items: center;
     display: flex;
     gap: 12px;
-    /* width: 768px; */
+    flex: 1;
+    /* 讓左側可以伸縮 */
+    min-width: 0;
+    /* 允許內容縮小 */
+}
+
+.left-side span:last-child {
+    /* 針對待辦事項文字 */
+    word-break: break-word;
+    /* 長單詞自動換行 */
+    overflow-wrap: break-word;
+    /* 確保換行 */
+    flex: 1;
+    /* 佔據剩餘空間 */
+    min-width: 0;
+    /* 允許縮小 */
 }
 
 .content-box {
@@ -78,21 +111,26 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
+    gap: 8px;
+    padding: 8px;
 
     &:hover {
         background-color: rgb(255, 255, 68);
     }
 }
 
-@media (max-width: 768px) {
+.delete-all {
+    margin-top: 20px;
+    width: 20%;
+}
 
-    /* 1. 讓容器內部的子元素靠左 */
+@media (max-width: 576px) {
+
     .section-box,
     .list-box {
         align-items: flex-start;
     }
 
-    /* 2. 讓 content-box 轉為垂直並靠左 */
     .content-box {
         flex-direction: column;
         align-items: flex-start;
@@ -104,22 +142,24 @@ body {
         }
     }
 
-    /* 3. 重要：取消原本把區塊推向右邊的 auto margin */
     .right-side {
         margin-left: 0;
         align-items: flex-start;
         justify-content: flex-start;
         width: 100%;
         margin-bottom: 12px;
-        /* 確保寬度佔滿以便觀察對齊 */
     }
 
-    /* 4. 確保左側區塊也是靠左 */
     .left-side {
         align-items: flex-start;
         justify-content: flex-start;
         flex-direction: column;
         width: 100%;
         gap: 4px;
+    }
+
+    .left-side span:last-child {
+        width: 100%;
+        /* 手機版確保文字佔滿寬度 */
     }
 }
