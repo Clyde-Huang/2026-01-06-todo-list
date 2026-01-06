@@ -1,0 +1,125 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.input-content {
+    width: 300px;
+    height: 24px;
+    border-top: 3px solid #333;
+    border-left: 3px solid #333;
+    border-right: 3px solid #a3a3a3;
+    border-bottom: 3px solid #a3a3a3;
+    border-radius: 2px;
+    padding: 2px;
+
+}
+
+.section-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 2px solid red;
+    gap: 12px;
+    padding: 12px;
+    max-width: 1024px;
+    min-width: 374px;
+    width: 100%;
+    margin: 12px auto;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.list-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.right-side {
+    margin-left: auto;
+    /* 核心：把右邊這整塊推到最右邊 */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    /* 右邊這塊內部靠右對齊 */
+    gap: 4px;
+}
+
+.left-side {
+    justify-content: center;
+    align-items: flex-start;
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    /* width: 768px; */
+}
+
+.content-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    &:hover {
+        background-color: rgb(255, 255, 68);
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* 1. 讓容器內部的子元素靠左 */
+    .section-box,
+    .list-box {
+        align-items: flex-start;
+    }
+
+    /* 2. 讓 content-box 轉為垂直並靠左 */
+    .content-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        border-bottom: 1px solid #333;
+
+        &:hover {
+            background-color: initial;
+        }
+    }
+
+    /* 3. 重要：取消原本把區塊推向右邊的 auto margin */
+    .right-side {
+        margin-left: 0;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+        margin-bottom: 12px;
+        /* 確保寬度佔滿以便觀察對齊 */
+    }
+
+    /* 4. 確保左側區塊也是靠左 */
+    .left-side {
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        width: 100%;
+        gap: 4px;
+    }
+}
