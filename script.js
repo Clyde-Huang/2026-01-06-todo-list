@@ -91,8 +91,11 @@ window.deleteTodo = (id) => {
 // 2.全刪但留下初始假資料
 window.delAll = () => {
     if (confirm("確定要清空全部待辦事項嗎？")) {
-        localStorage.removeItem('myTodos');
-        location.reload();
+        if (confirm("刪除全部按鈕是不管任何分類搜尋下都是全部刪除")) {
+            localStorage.removeItem('myTodos');
+            location.reload();
+        }
+
     }
 };
 // 套用狀態篩選
@@ -104,18 +107,18 @@ function applyFilter() {
     } else if (currentFilter === 'uncompleted') {
         filteredList = todoList.filter(item => item.completed === false);
     }
-    
+
     render();
 }
 
 // 按狀態篩選
 window.filterByStatus = (status) => {
     currentFilter = status;
-    
+
     // 更新按鈕的 active 狀態
     const buttons = document.querySelectorAll('.filter-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
-    
+
     if (status === 'all') {
         buttons[0].classList.add('active');
     } else if (status === 'completed') {
@@ -123,7 +126,7 @@ window.filterByStatus = (status) => {
     } else if (status === 'uncompleted') {
         buttons[2].classList.add('active');
     }
-    
+
     applyFilter();
 };
 
