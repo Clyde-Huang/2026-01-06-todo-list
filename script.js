@@ -1,7 +1,7 @@
 
 let todoList = JSON.parse(localStorage.getItem('myTodos')) || [
-    { id: 1, date: "2026-01-06", text: "晚上去買牛奶", completed: false },
-    { id: 2, date: "2026-01-06", text: "明晚要去買電視", completed: true }
+    { id: 1, date: "2026-01-06", text: "這兩行是初始化設定，讓畫面一開始有東西，可被刪除", completed: false },
+    { id: 2, date: "2026-01-06", text: "但下方按鈕'刪除全部'會回到初始設定，所以這兩行若被刪除會復原", completed: true }
     // 留點假資料讓初使畫面有內容
 ];
 let filteredList = [...todoList]; // 用來存放過濾後的結果
