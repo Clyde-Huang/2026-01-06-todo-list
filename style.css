@@ -10,13 +10,11 @@ body {
 
 .btn {
     cursor: pointer;
-    /* padding: 6px 12px; */
     background: linear-gradient(180deg, #ffffff 0%, #dfdfdf 100%);
     border-top: 2px solid #a3a3a3;
     border-left: 2px solid #a3a3a3;
     border-right: 2px solid #333;
     border-bottom: 2px solid #333;
-    /* font-size: 14px; */
     font-weight: 500;
     transition: all 0.1s;
     font-family: inherit;
@@ -48,7 +46,7 @@ body {
     justify-content: center;
     flex-direction: column;
     border: 2px solid rgb(250, 178, 111);
-    gap: 12px;
+    gap: 16px;
     padding: 12px;
     max-width: 576px;
     min-width: 374px;
@@ -151,8 +149,8 @@ body {
 
     .right-side {
         margin-left: 0;
-        align-items: flex-start;
         justify-content: flex-start;
+        align-items: center;
         width: 100%;
         margin-bottom: 12px;
     }
