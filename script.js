@@ -77,7 +77,7 @@ window.changeTodo = (id) => {
 window.deleteTodo = (id) => {
     if (confirm("確定要刪除嗎？")) {
         todoList = todoList.filter(t => t.id !== id);
-        render();
+        applyFilter();
     }
 };
 
